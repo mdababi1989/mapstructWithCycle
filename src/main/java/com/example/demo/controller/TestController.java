@@ -1,7 +1,13 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.BookDTO;
+import com.example.demo.dto.EditorDTO;
 import com.example.demo.mapper.BookMapper;
+import com.example.demo.mapper.CategoryMapper;
+import com.example.demo.mapper.EditorMapper;
 import com.example.demo.model.BookEntity;
+import com.example.demo.model.CategoryEntity;
+import com.example.demo.model.EditorEntity;
 import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.EditorRepository;
@@ -23,7 +29,9 @@ public class TestController {
     @Autowired
     BookMapper bookMapper;
     @Autowired
-    EditorRepository editorRepository;
+    EditorMapper editorMapper;
+    @Autowired
+    CategoryMapper categoryMapper;
 
     @GetMapping("/books")
     List<BookEntity> books(){
@@ -31,25 +39,26 @@ public class TestController {
     }
     @GetMapping("/booksDTO")
     List<BookDTO> booksDTO(){
-        return this.bookRepository.findAll();
+        return this.bookMapper.toDTOList(bookRepository.findAll());
     }
-    @GetMapping("/books")
-    List<BookEntity> books(){
-        return this.bookRepository.findAll();
+
+    @GetMapping("/editor")
+    List<EditorEntity> editor(){
+        return this.editorRepository.findAll();
     }
-    @GetMapping("/books")
-    List<BookEntity> books(){
-        return this.bookRepository.findAll();
-    }
-    @GetMapping("/books")
-    List<BookEntity> books(){
-        return this.bookRepository.findAll();
-    }
-    @GetMapping("/books")
-    List<BookEntity> books(){
-        return this.bookRepository.findAll();
+    @GetMapping("/editorDTO")
+    List<EditorDTO> editorDTO(){
+        return this.editorMapper.toDTOList(editorRepository.findAll());
     }
 
 
+    @GetMapping("/categories")
+    List<CategoryEntity> categories(){
+        return this.categoryRepository.findAll();
+    }
+    @GetMapping("/categoriesDTO")
+    List<BookDTO> categoriesDTO(){
+        return this.bookMapper.toDTOList(bookRepository.findAll());
+    }
 
 }
